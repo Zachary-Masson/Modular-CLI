@@ -29,7 +29,7 @@ export async function Button(options: Options) {
     const url = await StringAsk(
       "URL for new button (Ex: https://zacharymasson.com) : ",
     );
-    baseFile = baseFile.replace("$url", `button.setURL(${url});`);
+    baseFile = baseFile.replace("$url", `button.setURL("${url}");`);
   } else {
     baseFile = baseFile.replace("$url", "");
   }

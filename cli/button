@@ -1,14 +1,14 @@
-import { Button, ButtonBuilder, ButtonStyle, IsExecutor, Core, ExportButton, Discord } from "@zachary_masson/modular-core";
+import { Button, IsExecutor, Core, ExportButton, Discord } from "@zachary_masson/modular-core";
 
-const button = new ButtonBuilder();
+const button = new Discord.ButtonBuilder();
 button.setCustomId("$customId");
 button.setLabel("$label");
-button.setStyle(ButtonStyle.$style);
+button.setStyle(Discord.ButtonStyle.$style);
 $url
 
 @Button(button)
 class $nameOfClass {
-    export() {ExportButton(button)}
+    export() {return ExportButton(button)}
 
     @IsExecutor()
     exec(core: Core, client: Discord.Client<true>, interaction: Discord.ButtonInteraction) {

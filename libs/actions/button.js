@@ -20,7 +20,7 @@ function Button(options) {
         const style = yield (0, _utils_1.SelectBasicAsk)(["Primary", "Secondary", "Success", "Danger", "Link", "Premium"], "Style for new button (Ex: Primary) : ");
         if (style === "Link") {
             const url = yield (0, _utils_1.StringAsk)("URL for new button (Ex: https://zacharymasson.com) : ");
-            baseFile = baseFile.replace("$url", `button.setURL(${url});`);
+            baseFile = baseFile.replace("$url", `button.setURL("${url}");`);
         }
         else {
             baseFile = baseFile.replace("$url", "");
