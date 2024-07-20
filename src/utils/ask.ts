@@ -1,10 +1,14 @@
 import prompts from "prompts";
 
-export async function StringAsk(ask: string): Promise<string> {
+export async function StringAsk(
+  ask: string,
+  initial?: string,
+): Promise<string> {
   const { response } = await prompts({
     name: "response",
     message: ask,
     type: "text",
+    initial,
   });
 
   return response;

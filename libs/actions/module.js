@@ -35,14 +35,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Module = Module;
 const fs = __importStar(require("node:fs"));
 const path = __importStar(require("node:path"));
-const _utils_1 = require("../../..");
+const _utils_1 = require("../utils/index.js");
 function Module(options) {
     return __awaiter(this, void 0, void 0, function* () {
+        yield (0, _utils_1.getDatabase)();
         const name = yield (0, _utils_1.StringAsk)("Name of the module (Ex: advanced_presence) : ");
-        const author = yield (0, _utils_1.StringAsk)("Author of the module : ");
+        const author = yield (0, _utils_1.StringAsk)("Author of the module : ", (0, _utils_1.getLastAuthor)());
         const description = yield (0, _utils_1.StringAsk)("Description of the module: ");
+        yield (0, _utils_1.setLastAuthor)(author);
         yield (0, _utils_1.CreateFolderModule)(name, options);
-        const alias = JSON.parse(fs.readFileSync(path.join(process.cwd(), "tsconfig.json"), {
+        const alias = JSON.parse(fs.readFileSync(path.join(process.cwd(), "tsconfig.alias.json"), {
             encoding: "utf8",
         }));
         alias.compilerOptions.paths[`@modular(${name})/*`] = [
@@ -60,7 +62,7 @@ function Module(options) {
         alias.compilerOptions.paths[`@modular(${name})/buttons/*`] = [
             `modules/@modular(${name})/libs/buttons/*`,
         ];
-        fs.writeFileSync(path.join(process.cwd(), "tsconfig.json"), JSON.stringify(alias, null, 2), { encoding: "utf-8" });
+        fs.writeFileSync(path.join(process.cwd(), "tsconfig.alias.json"), JSON.stringify(alias, null, 2), { encoding: "utf-8" });
         let module_main = yield (0, _utils_1.getCliFile)("module.main", options);
         module_main = module_main.replace("$name", name);
         module_main = module_main.replace("$description", description);

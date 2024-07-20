@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Button = Button;
-const _utils_1 = require("../../..");
+const _utils_1 = require("../utils/index.js");
 function Button(options) {
     return __awaiter(this, void 0, void 0, function* () {
         let baseFile = yield (0, _utils_1.getCliFile)("button", options);

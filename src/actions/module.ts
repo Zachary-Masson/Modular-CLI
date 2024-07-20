@@ -3,17 +3,28 @@ import * as path from "node:path";
 
 import type { Options } from "@types";
 
-import { CreateFolderModule, getCliFile, StringAsk } from "@utils";
+import {
+  CreateFolderModule,
+  getCliFile,
+  getDatabase,
+  getLastAuthor,
+  setLastAuthor,
+  StringAsk,
+} from "@utils";
 
 export async function Module(options: Options) {
+  await getDatabase();
+
   const name = await StringAsk("Name of the module (Ex: advanced_presence) : ");
-  const author = await StringAsk("Author of the module : ");
+  const author = await StringAsk("Author of the module : ", getLastAuthor());
   const description = await StringAsk("Description of the module: ");
+
+  await setLastAuthor(author);
 
   await CreateFolderModule(name, options);
 
   const alias = JSON.parse(
-    fs.readFileSync(path.join(process.cwd(), "tsconfig.json"), {
+    fs.readFileSync(path.join(process.cwd(), "tsconfig.alias.json"), {
       encoding: "utf8",
     }),
   );
@@ -35,7 +46,7 @@ export async function Module(options: Options) {
   ];
 
   fs.writeFileSync(
-    path.join(process.cwd(), "tsconfig.json"),
+    path.join(process.cwd(), "tsconfig.alias.json"),
     JSON.stringify(alias, null, 2),
     { encoding: "utf-8" },
   );

@@ -6,13 +6,21 @@ import type { Options } from "@types";
 import prompts from "prompts";
 
 import { Command, Entity, Event, Init, Module, Button } from "@actions";
-import { ChooseModule, getModules, isInitialise, setOptions } from "@utils";
+import {
+  ChooseModule,
+  getModules,
+  InitDatabase,
+  isInitialise,
+  setOptions,
+} from "@utils";
 
 async function main() {
+  InitDatabase();
+
   const options: Options = {
     dir_project: process.cwd(),
     dir_modules: path.join(process.cwd(), "src", "modules"),
-    dir_cli: path.join(__dirname, "..", "..", "..", "cli"),
+    dir_cli: path.join(__dirname, "..", "cli"),
   };
 
   let choices = [];

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Init = Init;
 const node_path_1 = __importDefault(require("node:path"));
 const node_fs_1 = __importDefault(require("node:fs"));
-const _utils_1 = require("../../..");
+const _utils_1 = require("../utils/index.js");
 function Init(options) {
     const base_dir = node_path_1.default.join(options.dir_cli, "initialise");
     (0, _utils_1.CopyFolderSync)(base_dir, options.dir_project);

@@ -15,12 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StringAsk = StringAsk;
 exports.SelectBasicAsk = SelectBasicAsk;
 const prompts_1 = __importDefault(require("prompts"));
-function StringAsk(ask) {
+function StringAsk(ask, initial) {
     return __awaiter(this, void 0, void 0, function* () {
         const { response } = yield (0, prompts_1.default)({
             name: "response",
             message: ask,
             type: "text",
+            initial,
         });
         return response;
     });

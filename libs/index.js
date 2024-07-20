@@ -15,14 +15,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_path_1 = __importDefault(require("node:path"));
 const prompts_1 = __importDefault(require("prompts"));
-const _actions_1 = require("../..");
-const _utils_1 = require("../..");
+const _actions_1 = require("./actions/index.js");
+const _utils_1 = require("./utils/index.js");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
+        (0, _utils_1.InitDatabase)();
         const options = {
             dir_project: process.cwd(),
             dir_modules: node_path_1.default.join(process.cwd(), "src", "modules"),
-            dir_cli: node_path_1.default.join(__dirname, "..", "..", "..", "cli"),
+            dir_cli: node_path_1.default.join(__dirname, "..", "cli"),
         };
         let choices = [];
         if (!(yield (0, _utils_1.isInitialise)(options)))

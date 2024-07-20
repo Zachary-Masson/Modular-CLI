@@ -9,15 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Event = Event;
-const _utils_1 = require("../../..");
-function Event(options) {
+exports.Entity = Entity;
+const _utils_1 = require("../utils/index.js");
+function Entity(options) {
     return __awaiter(this, void 0, void 0, function* () {
-        let baseFile = yield (0, _utils_1.getCliFile)("event", options);
-        const name = yield (0, _utils_1.StringAsk)("Name for new event (Ex: Ready) : ");
-        baseFile = baseFile.replace("$nameOfClass", name);
-        baseFile = baseFile.replace("$nameOfClass", name);
-        yield (0, _utils_1.CreateDirInLibs)("events", options);
-        yield (0, _utils_1.CreateFileInLibs)("events", (0, _utils_1.toSnakeCase)(name), baseFile, options);
+        let baseFile = yield (0, _utils_1.getCliFile)("entity", options);
+        const name = yield (0, _utils_1.StringAsk)("Name for new entity (Ex: UserPresence) : ");
+        const moduleNameString = (0, _utils_1.toPascalCase)(options.moduleName.split("(")[1].split(")")[0]);
+        baseFile = baseFile.replace("$nameOfClass", `${moduleNameString}${name}`);
+        baseFile = baseFile.replace("$nameOfClass", `${moduleNameString}${name}`);
+        yield (0, _utils_1.CreateDirInLibs)("entities", options);
+        yield (0, _utils_1.CreateFileInLibs)("entities", (0, _utils_1.toSnakeCase)(name), baseFile, options);
     });
 }

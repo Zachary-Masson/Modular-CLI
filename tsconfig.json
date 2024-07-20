@@ -20,7 +20,7 @@
     "noFallthroughCasesInSwitch": false,
     "resolveJsonModule": true,
 
-    "baseUrl": "./src/bin/cli",
+    "baseUrl": "./src",
     "paths": {
       "@actions": ["actions/index.ts"],
       "@types": ["types/index.ts"],
