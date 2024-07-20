@@ -1,0 +1,29 @@
+{
+  "name": "@zachary_masson/modular-cli",
+  "version": "0.0.1",
+  "description": "CLI for modular-core",
+  "repository": "https://github.com/Zachary-Masson/Modular-CLI.git",
+  "author": "Zachary Masson <contact@zacharymasson.com>",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
+    "publish": "yarn build && npm publish --access public"
+  },
+  "files": [
+    "libs/**/*",
+    "cli/**/*"
+  ],
+  "bin": {
+    "modular": "libs/bin/cli/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/prompts": "^2.4.9",
+    "typescript": "^5.5.3",
+    "tsc-alias": "^1.8.10"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2"
+  },
+  "private": false
+}

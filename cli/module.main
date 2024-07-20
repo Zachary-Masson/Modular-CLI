@@ -1,0 +1,9 @@
+import { Manifest } from "@zachary_masson/modular-core";
+
+const manifest: Manifest = new Manifest({
+  name: "$name",
+  description: "$description",
+  author: "$author",
+});
+
+export = manifest;

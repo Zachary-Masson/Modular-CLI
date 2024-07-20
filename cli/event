@@ -1,0 +1,13 @@
+import { Event, EventTypes, IsExecutor, Core, Discord } from "@zachary_masson/modular-core";
+
+@Event(EventTypes.ready)
+class $nameOfClass {
+
+    @IsExecutor()
+    on(core: Core, client: Discord.Client<true>) {
+        console.log("i'm ready !")
+    }
+
+};
+
+export = $nameOfClass;

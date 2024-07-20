@@ -1,0 +1,23 @@
+import {
+  Discord,
+  IsExecutor,
+  Command,
+  Core,
+} from "@zachary_masson/modular-core";
+
+const command = new Discord.SlashCommandBuilder();
+command.setName("$name");
+command.setDescription("$description");
+
+@Command(command)
+class $nameOfClass {
+  @IsExecutor()
+  call(core: Core, client: Discord.Client<>, interaction: Discord.ChatInputCommandInteraction) {
+    return interaction.reply({
+      content: "I'm alive !",
+      ephemeral: true,
+    });
+  }
+}
+
+export = $nameOfClass;

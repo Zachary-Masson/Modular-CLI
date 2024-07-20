@@ -1,0 +1,11 @@
+import { Typeorm } from "@zachary_masson/modular-core";
+
+@Typeorm.Entity()
+class $nameOfClass {
+
+    @Typeorm.Column()
+    id: number;
+
+}
+
+export = $nameOfClass
