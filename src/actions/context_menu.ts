@@ -1,7 +1,7 @@
 import {Options} from "@types";
 import {CreateDirInLibs, CreateFileInLibs, getCliFile, SelectBasicAsk, StringAsk, toPascalCase} from "@utils";
 
-export async function ContextMenu(options: Options) {
+export async function Context_menu(options: Options) {
   let baseFile = await getCliFile("contextMenu", options);
 
   const name = await StringAsk(
@@ -15,9 +15,9 @@ export async function ContextMenu(options: Options) {
   baseFile = baseFile.replace("$nameOfClass", toPascalCase(name));
   baseFile = baseFile.replace("$nameOfClass", toPascalCase(name));
 
-  await CreateDirInLibs(["contextMenus"], options);
-  await CreateDirInLibs(["contextMenus", "message"], options);
-  await CreateDirInLibs(["contextMenus", "user"], options);
+  await CreateDirInLibs(["context_menus"], options);
+  await CreateDirInLibs(["context_menus", "message"], options);
+  await CreateDirInLibs(["context_menus", "user"], options);
 
-  await CreateFileInLibs(["contextMenus", type.toLowerCase()], name, baseFile, options);
+  await CreateFileInLibs(["context_menus", type.toLowerCase()], name, baseFile, options);
 }

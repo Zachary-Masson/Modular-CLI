@@ -19,7 +19,7 @@ export async function Entity(options: Options) {
 
   baseFile = baseFile.replace("$nameOfClass", `${name}`);
   baseFile = baseFile.replace("$nameOfClass", `${name}`);
-  baseFile = baseFile.replace("$tableName", `${moduleNameString}_${name}`)
+  baseFile = baseFile.replace("$tableName", `${moduleNameString}_${toSnakeCase(name)}`)
 
   await CreateDirInLibs(["entities"], options);
 

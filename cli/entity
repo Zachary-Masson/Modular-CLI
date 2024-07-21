@@ -3,7 +3,7 @@ import { Typeorm } from "@zachary_masson/modular-core";
 @Typeorm.Entity({name: "$tableName"})
 class $nameOfClass {
 
-    @Typeorm.Column()
+    @Typeorm.PrimaryColumn()
     id: number;
 
 }

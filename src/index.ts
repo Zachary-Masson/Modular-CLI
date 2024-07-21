@@ -5,7 +5,7 @@ import type { Options } from "@types";
 
 import prompts from "prompts";
 
-import {Command, Entity, Event, Init, Module, Button, ContextMenu} from "@actions";
+import {Command, Entity, Event, Init, Module, Button, Context_menu} from "@actions";
 import {
   ChooseModule,
   getModules,
@@ -33,7 +33,7 @@ async function main() {
         value: "init",
       },
     ];
-  else
+  else {
     options.modules = getModules(options);
 
     if (!options.modules[0]) {
@@ -72,13 +72,13 @@ async function main() {
           value: "btn",
         },
         {
-          title: "New ContextMenu",
+          title: "New Context_menu",
           description: "This will create a new button",
           value: "ctm",
         },
       ];
     }
-
+  }
 
   console.clear();
 
@@ -111,7 +111,7 @@ async function main() {
       return Button(options);
 
     case "ctm":
-      return ContextMenu(options);
+      return Context_menu(options);
   }
 }
 

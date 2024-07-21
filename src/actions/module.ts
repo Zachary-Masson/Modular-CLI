@@ -24,7 +24,7 @@ export async function Module(options: Options) {
   await CreateFolderModule(name, options);
 
   const alias = JSON.parse(
-    fs.readFileSync(path.join(process.cwd(), "tsconfig.alias.json"), {
+    fs.readFileSync(path.join(process.cwd(), "tsconfig.json"), {
       encoding: "utf8",
     }),
   );
@@ -55,7 +55,7 @@ export async function Module(options: Options) {
   ];
 
   fs.writeFileSync(
-    path.join(process.cwd(), "tsconfig.alias.json"),
+    path.join(process.cwd(), "tsconfig.json"),
     JSON.stringify(alias, null, 2),
     { encoding: "utf-8" },
   );
