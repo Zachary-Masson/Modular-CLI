@@ -19,5 +19,5 @@ export async function ContextMenu(options: Options) {
   await CreateDirInLibs(["contextMenus", "message"], options);
   await CreateDirInLibs(["contextMenus", "user"], options);
 
-  await CreateFileInLibs(["contextMenus", name.toLowerCase()], name, baseFile, options);
+  await CreateFileInLibs(["contextMenus", type.toLowerCase()], name, baseFile, options);
 }
