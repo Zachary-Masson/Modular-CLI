@@ -32,3 +32,14 @@ export async function SelectBasicAsk(
 
   return response;
 }
+
+export async function SelectAsk(choices: {title: string, description: string, value: string}[], message: string) {
+  const { response } = await prompts({
+    type: "select",
+    name: "response",
+    message,
+    choices
+  });
+
+  return response;
+}

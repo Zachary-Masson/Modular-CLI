@@ -24,7 +24,8 @@
     "paths": {
       "@actions": ["actions/index.ts"],
       "@types": ["types/index.ts"],
-      "@utils": ["utils/index.ts"]
+      "@utils": ["utils/index.ts"],
+      "@data": ["data/index.ts"]
     },
   },
   "include": [

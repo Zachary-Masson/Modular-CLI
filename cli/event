@@ -1,11 +1,11 @@
 import { Event, EventTypes, IsExecutor, Core, Discord } from "@zachary_masson/modular-core";
 
-@Event(EventTypes.ready)
+@Event(EventTypes.$eventName)
 class $nameOfClass {
 
     @IsExecutor()
     on(core: Core, client: Discord.Client<true>) {
-        console.log("i'm ready !")
+        console.log("Event is ready !")
     }
 
 };
