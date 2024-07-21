@@ -40,7 +40,7 @@ export async function Button(options: Options) {
   baseFile = baseFile.replace("$nameOfClass", toPascalCase(name));
   baseFile = baseFile.replace("$nameOfClass", toPascalCase(name));
 
-  await CreateDirInLibs("buttons", options);
+  await CreateDirInLibs(["buttons"], options);
 
-  await CreateFileInLibs("buttons", name, baseFile, options);
+  await CreateFileInLibs(["buttons"], name, baseFile, options);
 }

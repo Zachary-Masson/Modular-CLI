@@ -5,7 +5,7 @@ import type { Options } from "@types";
 
 import prompts from "prompts";
 
-import { Command, Entity, Event, Init, Module, Button } from "@actions";
+import {Command, Entity, Event, Init, Module, Button, ContextMenu} from "@actions";
 import {
   ChooseModule,
   getModules,
@@ -34,33 +34,51 @@ async function main() {
       },
     ];
   else
-    choices = [
-      {
-        title: "New Module",
-        description: "This allows you to create a new module",
-        value: "mo",
-      },
-      {
-        title: "New Command",
-        description: "This will create a new command",
-        value: "cmd",
-      },
-      {
-        title: "New Entity",
-        description: "This will create a new entity",
-        value: "entity",
-      },
-      {
-        title: "New Event",
-        description: "This will create a new event",
-        value: "event",
-      },
-      {
-        title: "New Button",
-        description: "This will create a new button",
-        value: "btn",
-      },
-    ];
+    options.modules = getModules(options);
+
+    if (!options.modules[0]) {
+      choices = [
+        {
+          title: "New Module",
+          description: "This allows you to create a new module",
+          value: "mo",
+        }
+      ]
+    } else {
+      choices = [
+        {
+          title: "New Module",
+          description: "This allows you to create a new module",
+          value: "mo",
+        },
+        {
+          title: "New Command",
+          description: "This will create a new command",
+          value: "cmd",
+        },
+        {
+          title: "New Entity",
+          description: "This will create a new entity",
+          value: "entity",
+        },
+        {
+          title: "New Event",
+          description: "This will create a new event",
+          value: "event",
+        },
+        {
+          title: "New Button",
+          description: "This will create a new button",
+          value: "btn",
+        },
+        {
+          title: "New ContextMenu",
+          description: "This will create a new button",
+          value: "ctm",
+        },
+      ];
+    }
+
 
   console.clear();
 
@@ -75,8 +93,6 @@ async function main() {
 
   if (actions === "init") return Init(options);
   else if (actions === "mo") return Module(options);
-
-  options.modules = getModules(options);
 
   const module = await ChooseModule(options);
   await setOptions(module, options);
@@ -93,6 +109,9 @@ async function main() {
 
     case "btn":
       return Button(options);
+
+    case "ctm":
+      return ContextMenu(options);
   }
 }
 

@@ -4,20 +4,20 @@ import path from "node:path";
 import type { Options } from "@types";
 
 export async function CreateDirInLibs(
-  dir: string,
+  dirs: string[],
   options: Options,
 ): Promise<void> {
-  if (!fs.existsSync(path.join(options.dir_libs, dir)))
-    fs.mkdirSync(path.join(options.dir_libs, dir));
+  if (!fs.existsSync(path.join(options.dir_libs, ...dirs)))
+    fs.mkdirSync(path.join(options.dir_libs, ...dirs));
 }
 
 export async function CreateFileInLibs(
-  dir: string,
+  dirs: string[],
   name: string,
   data: string,
   options: Options,
 ): Promise<void> {
-  fs.writeFileSync(path.join(options.dir_libs, dir, `${name}.ts`), data, {
+  fs.writeFileSync(path.join(options.dir_libs, ...dirs, `${name}.ts`), data, {
     encoding: "utf8",
   });
 }

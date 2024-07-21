@@ -22,7 +22,7 @@ export async function Command(options: Options) {
   baseFile = baseFile.replace("$nameOfClass", toPascalCase(name));
   baseFile = baseFile.replace("$nameOfClass", toPascalCase(name));
 
-  await CreateDirInLibs("commands", options);
+  await CreateDirInLibs(["commands"], options);
 
-  await CreateFileInLibs("commands", name, baseFile, options);
+  await CreateFileInLibs(["commands"], name, baseFile, options);
 }

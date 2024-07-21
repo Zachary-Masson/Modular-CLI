@@ -44,6 +44,15 @@ export async function Module(options: Options) {
   alias.compilerOptions.paths[`@modular(${name})/buttons/*`] = [
     `modules/@modular(${name})/libs/buttons/*`,
   ];
+  alias.compilerOptions.paths[`@modular(${name})/contextMenus/*`] = [
+    `modules/@modular(${name})/libs/contextMenus/*`,
+  ];
+  alias.compilerOptions.paths[`@modular(${name})/contextMenuUser/*`] = [
+    `modules/@modular(${name})/libs/contextMenusUser/*`,
+  ];
+  alias.compilerOptions.paths[`@modular(${name})/contextMenuMessage/*`] = [
+    `modules/@modular(${name})/libs/contextMenuMessage/*`,
+  ];
 
   fs.writeFileSync(
     path.join(process.cwd(), "tsconfig.alias.json"),

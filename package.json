@@ -1,6 +1,6 @@
 {
   "name": "@zachary_masson/modular-cli",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "CLI for modular-core",
   "repository": "https://github.com/Zachary-Masson/Modular-CLI.git",
   "author": "Zachary Masson <contact@zacharymasson.com>",

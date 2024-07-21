@@ -8,6 +8,6 @@ class $nameOfClass {
         console.log("Event is ready !")
     }
 
-};
+}
 
 export = $nameOfClass;

@@ -19,7 +19,7 @@ export async function Event(options: Options) {
   baseFile = baseFile.replace("$nameOfClass", name);
   baseFile = baseFile.replace("$eventName", eventName);
 
-  await CreateDirInLibs("events", options);
+  await CreateDirInLibs(["events"], options);
 
-  await CreateFileInLibs("events", toSnakeCase(name), baseFile, options);
+  await CreateFileInLibs(["events"], toSnakeCase(name), baseFile, options);
 }

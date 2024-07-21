@@ -1,0 +1,26 @@
+import {
+  Discord,
+  IsExecutor,
+  Command,
+  Core,
+  ContextMenuCommandInteraction,
+  ContextMenuCommandBuilder,
+  ApplicationCommandType
+} from "@zachary_masson/modular-core";
+
+const command = new Discord.ContextMenuCommandBuilder();
+command.setName("$name");
+command.setType(Discord.ApplicationCommandType.$type);
+
+@Command(command)
+class $nameOfClass {
+  @IsExecutor()
+  call(core: Core, client: Discord.Client<>, interaction: Discord.ContextMenuCommandInteraction) {
+    return interaction.reply({
+      content: "I'm alive !",
+      ephemeral: true,
+    });
+  }
+}
+
+export = $nameOfClass;
