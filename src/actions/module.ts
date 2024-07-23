@@ -60,7 +60,7 @@ export async function Module(options: Options) {
   let main = fs.readFileSync(path.join(options.dir_project, "src", "main.ts"), "utf8");
 
   main = main.replace("// Imports Modules", `// Imports Modules\nimport ${toPascalCase(name)} from "@modular(${name})/main";`)
-  main = main.replace("// Use Module", `// Use Module\nclient.useModule(${toPascalCase(name)});`)
+  main = main.replace("// Use Module", `// Use Module\n  await client.useModule(${toPascalCase(name)});`)
 
   fs.writeFileSync(
     path.join(options.dir_project, "src", "main.ts"),
