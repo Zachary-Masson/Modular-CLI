@@ -2,6 +2,8 @@ import "dotenv/config"
 
 import { Colors, Modular } from "@zachary_masson/modular-core";
 
+// Imports Modules
+
 const client = new Modular({
   token: process.env.TOKEN,
   dev: JSON.parse(process.env.DEV) || false,
@@ -22,5 +24,7 @@ const client = new Modular({
     }
   }
 });
+
+// Use Module
 
 client.login();

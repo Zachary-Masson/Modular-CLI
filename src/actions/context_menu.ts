@@ -1,5 +1,13 @@
-import {Options} from "@types";
-import {CreateDirInLibs, CreateFileInLibs, getCliFile, SelectBasicAsk, StringAsk, toPascalCase} from "@utils";
+import {ImportType, Options} from "@types";
+import {
+  CreateDirInLibs,
+  CreateFileInLibs,
+  getCliFile,
+  ImportInManifest,
+  SelectBasicAsk,
+  StringAsk,
+  toPascalCase, toSnakeCase
+} from "@utils";
 
 export async function Context_menu(options: Options) {
   let baseFile = await getCliFile("contextMenu", options);
@@ -20,4 +28,6 @@ export async function Context_menu(options: Options) {
   await CreateDirInLibs(["context_menus", "user"], options);
 
   await CreateFileInLibs(["context_menus", type.toLowerCase()], name, baseFile, options);
+
+  ImportInManifest(options, ImportType.CONTEXT_MENUS, name, toSnakeCase(name), [type.toLowerCase()])
 }

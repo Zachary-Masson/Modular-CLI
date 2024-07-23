@@ -1,9 +1,29 @@
 import { Manifest } from "@zachary_masson/modular-core";
 
+/*          Imports Mapping         */
+
+// Commands
+
+// Events
+
+// ContextMenus
+
+// Buttons
+
+// Entities
+
+
 const manifest: Manifest = new Manifest({
   name: "$name",
   description: "$description",
   author: "$author",
+  mappings: {
+    commands: [],
+    events: [],
+    context_menus: [],
+    buttons: [],
+    entities: [],
+  }
 });
 
 export = manifest;

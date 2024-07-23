@@ -7,8 +7,8 @@ export async function CreateDirInLibs(
   dirs: string[],
   options: Options,
 ): Promise<void> {
-  if (!fs.existsSync(path.join(options.dir_libs, ...dirs)))
-    fs.mkdirSync(path.join(options.dir_libs, ...dirs));
+  if (!fs.existsSync(path.join(options.dir_module, ...dirs)))
+    fs.mkdirSync(path.join(options.dir_module, ...dirs));
 }
 
 export async function CreateFileInLibs(
@@ -17,14 +17,13 @@ export async function CreateFileInLibs(
   data: string,
   options: Options,
 ): Promise<void> {
-  fs.writeFileSync(path.join(options.dir_libs, ...dirs, `${name}.ts`), data, {
+  fs.writeFileSync(path.join(options.dir_module, ...dirs, `${name}.ts`), data, {
     encoding: "utf8",
   });
 }
 
 export async function setOptions(module: string, options: Options) {
   options.dir_module = path.join(options.dir_modules, module);
-  options.dir_libs = path.join(options.dir_module, "libs");
   options.moduleName = module;
   return;
 }
@@ -35,9 +34,6 @@ export function getModules(options: Options): string[] {
 
 export async function CreateFolderModule(moduleName: string, options: Options) {
   fs.mkdirSync(path.join(options.dir_modules, `@modular(${moduleName})`));
-  fs.mkdirSync(
-    path.join(options.dir_modules, `@modular(${moduleName})`, "libs"),
-  );
 
   await setOptions(`@modular(${moduleName})`, options);
 }

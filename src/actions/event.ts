@@ -1,9 +1,11 @@
-import type { Options } from "@types";
+import {ImportType, Options} from "@types";
 
 import {
   CreateDirInLibs,
   CreateFileInLibs,
-  getCliFile, SelectAsk,
+  getCliFile,
+  ImportInManifest,
+  SelectAsk,
   StringAsk,
   toSnakeCase,
 } from "@utils";
@@ -22,4 +24,6 @@ export async function Event(options: Options) {
   await CreateDirInLibs(["events"], options);
 
   await CreateFileInLibs(["events"], toSnakeCase(name), baseFile, options);
+
+  ImportInManifest(options, ImportType.EVENTS, name, toSnakeCase(name))
 }

@@ -9,7 +9,7 @@ import {
   getDatabase,
   getLastAuthor,
   setLastAuthor,
-  StringAsk,
+  StringAsk, toPascalCase,
 } from "@utils";
 
 export async function Module(options: Options) {
@@ -29,29 +29,12 @@ export async function Module(options: Options) {
     }),
   );
 
+  alias.compilerOptions.paths[`@modular(${name})/main`] = [
+    `modules/@modular(${name})/module.main.ts`,
+  ];
+
   alias.compilerOptions.paths[`@modular(${name})/*`] = [
-    `modules/@modular(${name})/libs/*`,
-  ];
-  alias.compilerOptions.paths[`@modular(${name})/commands/*`] = [
-    `modules/@modular(${name})/libs/commands/*`,
-  ];
-  alias.compilerOptions.paths[`@modular(${name})/entities/*`] = [
-    `modules/@modular(${name})/libs/entities/*`,
-  ];
-  alias.compilerOptions.paths[`@modular(${name})/events/*`] = [
-    `modules/@modular(${name})/libs/events/*`,
-  ];
-  alias.compilerOptions.paths[`@modular(${name})/buttons/*`] = [
-    `modules/@modular(${name})/libs/buttons/*`,
-  ];
-  alias.compilerOptions.paths[`@modular(${name})/contextMenus/*`] = [
-    `modules/@modular(${name})/libs/contextMenus/*`,
-  ];
-  alias.compilerOptions.paths[`@modular(${name})/contextMenuUser/*`] = [
-    `modules/@modular(${name})/libs/contextMenusUser/*`,
-  ];
-  alias.compilerOptions.paths[`@modular(${name})/contextMenuMessage/*`] = [
-    `modules/@modular(${name})/libs/contextMenuMessage/*`,
+    `modules/@modular(${name})/*`,
   ];
 
   fs.writeFileSync(
@@ -69,6 +52,19 @@ export async function Module(options: Options) {
   fs.writeFileSync(
     path.join(options.dir_module, "module.main.ts"),
     module_main,
+    {
+      encoding: "utf-8",
+    },
+  );
+
+  let main = fs.readFileSync(path.join(options.dir_project, "src", "main.ts"), "utf8");
+
+  main = main.replace("// Imports Modules", `// Imports Modules\nimport ${toPascalCase(name)} from "@modular(${name})/main";`)
+  main = main.replace("// Use Module", `// Use Module\nclient.useModule(${toPascalCase(name)});`)
+
+  fs.writeFileSync(
+    path.join(options.dir_project, "src", "main.ts"),
+    main,
     {
       encoding: "utf-8",
     },

@@ -1,11 +1,11 @@
-import type { Options } from "@types";
+import {ImportType, Options} from "@types";
 
 import {
   CreateDirInLibs,
   CreateFileInLibs,
-  getCliFile,
+  getCliFile, ImportInManifest,
   StringAsk,
-  toPascalCase,
+  toPascalCase, toSnakeCase,
 } from "@utils";
 
 export async function Command(options: Options) {
@@ -25,4 +25,8 @@ export async function Command(options: Options) {
   await CreateDirInLibs(["commands"], options);
 
   await CreateFileInLibs(["commands"], name, baseFile, options);
+
+  ImportInManifest(options, ImportType.COMMANDS, toPascalCase(name), toSnakeCase(name))
 }
+
+

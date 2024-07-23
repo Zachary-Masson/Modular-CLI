@@ -1,12 +1,12 @@
-import type { Options } from "@types";
+import {ImportType, Options} from "@types";
 
 import {
   CreateDirInLibs,
   CreateFileInLibs,
-  getCliFile,
+  getCliFile, ImportInManifest,
   SelectBasicAsk,
   StringAsk,
-  toPascalCase,
+  toPascalCase, toSnakeCase,
 } from "@utils";
 
 export async function Button(options: Options) {
@@ -43,4 +43,6 @@ export async function Button(options: Options) {
   await CreateDirInLibs(["buttons"], options);
 
   await CreateFileInLibs(["buttons"], name, baseFile, options);
+
+  ImportInManifest(options, ImportType.BUTTONS, toPascalCase(name), name)
 }

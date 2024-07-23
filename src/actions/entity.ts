@@ -1,9 +1,9 @@
-import type { Options } from "@types";
+import {ImportType, Options} from "@types";
 
 import {
   CreateDirInLibs,
   CreateFileInLibs,
-  getCliFile,
+  getCliFile, ImportInManifest,
   StringAsk,
   toSnakeCase,
 } from "@utils";
@@ -24,4 +24,6 @@ export async function Entity(options: Options) {
   await CreateDirInLibs(["entities"], options);
 
   await CreateFileInLibs(["entities"], toSnakeCase(name), baseFile, options);
+
+  ImportInManifest(options, ImportType.ENTITIES, name, toSnakeCase(name))
 }
